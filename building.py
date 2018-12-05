@@ -1,5 +1,3 @@
-from json import dumps
-
 class Building(object):
     def __init__(self, **kwargs):
         self.date_added = kwargs["date_added"]
