@@ -108,5 +108,4 @@ venv.bak/
 .pynb_checkpoints
 
 # Excel Files
-*.xlsx
-!building_data.xlsx
+~$building_data.xlsx
