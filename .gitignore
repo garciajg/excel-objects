@@ -106,3 +106,7 @@ venv.bak/
 # Jupyter Notebook
 .pynb_checkpoints/
 .pynb_checkpoints
+
+# Excel Files
+*.xlsx
+!building_data.xlsx

@@ -70,7 +70,7 @@ def user_ui():
         print("Wrong keyword. Use 'l' or 'b'")
         time.sleep(2)
         user_ui()
-    
+
     inp = input("Search: ")
     if inp.upper() == "ALL".upper():
         return get_all_buildings_data()
@@ -83,8 +83,10 @@ def user_ui():
         for d in filtered_dicts:
             if want_all_data:
                 b_d = b.to_json
-                qs = {k: v for (k, v) in d if v in b_d[k]}
-                print(qs)
+                for k, v in d.items():
+                    if b_d[k] == v:
+                        print(b_d)
+                        print("\n")
                 # else:
                 #     print("We couldn't find your building. Would you like to try again:")
                 #     if bool(input("(True) or (False): ").capitalized()):
@@ -218,7 +220,7 @@ def get_key_values(queries):
             user_ui()
         else:
             k = assign_query(query)
-            fd = {k, inp}
+            fd = {k: inp}
             filtered_dicts.append(fd)
     return filtered_dicts
 
