@@ -30,7 +30,6 @@ def get_buildings_from_file():
     for i in range(len(od)):
         building = Building(**od[i])
         buildings.append(building)
-    print(buildings[0].to_json)
     return buildings
 
 def user_ui():
@@ -81,20 +80,25 @@ def user_ui():
     temp_arr = []
     for b in buildings:
         for d in filtered_dicts:
+            b_d = b.to_json
             if want_all_data:
-                b_d = b.to_json
                 for k, v in d.items():
                     if b_d[k] == v:
                         print(b_d)
                         print("\n")
-                # else:
-                #     print("We couldn't find your building. Would you like to try again:")
-                #     if bool(input("(True) or (False): ").capitalized()):
-                #         user_ui()
-                    # else:
-                    #     return
             else:
-                print("OK")
+                try:
+                    for k, v in d.items():
+                        if b_d[k] == v:
+                            print(b.building)
+                            print("{}: {}".format(k,v))
+                        else:
+                            print("Couldn't find {}".format(k))
+                            time.sleep(2)
+                            user_ui()
+                except:
+                    print("Couldn't find {}".format(k))
+                    user_ui()
 
 def get_all_buildings_data():
     buildings = get_buildings_from_file()
